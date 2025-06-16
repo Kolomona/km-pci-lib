@@ -39,22 +39,42 @@ PCI_BASEURL=https://api.podcastindex.org/api/1.0/
 
 2. Import and use the functions directly in your code:
 
+Warning the functions in pci.ts will likely be undergoing a major rewrite. See TODO.md for more details.
+
 ```typescript
-import { searchPodcasts, getEpisodes, getPodcastMetadata } from 'km-pci-lib/pci';
-// For music-related endpoints:
-import { searchMusic } from 'km-pci-lib/music';
+import {
+  getFeedFromPCIbyGuid,        // (guid: string) => Promise<FeedData>
+  getEpisodesFromPCIbyGuid,     // (feedGuid: string) => Promise<EpisodeData>
+  getEpisodeFromPCIbyGuids,     // (feedGuid: string, itemGuid: string) => Promise<EpisodeData | undefined>
+  searchPciAlbums,              // (query: string) => Promise<any>
+  getRssUrlFromGuid             // (feedGuid: string) => Promise<string | undefined>
+} from 'km-pci-lib/pci';
 
-// Search for podcasts
-const results = await searchPodcasts("science");
+import {
+  getAlbum,                    // (guid: string) => Promise<Album>
+  getPlaylist                  // (guid: string) => Promise<Playlist>
+} from 'km-pci-lib/music';
 
-// Get episodes for a podcast
-const episodes = await getEpisodes(123456);
+// Fetch podcast feed metadata by GUID
+const feed: FeedData = await getFeedFromPCIbyGuid("your-feed-guid");
 
-// Get podcast metadata
-const metadata = await getPodcastMetadata(123456);
+// Retrieve all episodes for a podcast feed GUID
+const episodes: EpisodeData = await getEpisodesFromPCIbyGuid("your-feed-guid");
 
-// Search for music (if supported)
-const musicResults = await searchMusic("jazz");
+// Retrieve a specific episode by feed GUID and item GUID
+const episode: EpisodeData | undefined = await getEpisodeFromPCIbyGuids("your-feed-guid", "your-item-guid");
+
+// Search for music albums by keyword
+const albums: any = await searchPciAlbums("jazz");
+
+// Get the RSS URL for a podcast feed by GUID
+const rssUrl: string | undefined = await getRssUrlFromGuid("your-feed-guid");
+
+// Fetch an album (music podcast) and its songs by GUID
+const album: Album = await getAlbum("your-album-guid");
+
+// Fetch a playlist (music medium podcast) and its songs by GUID
+const playlist: Playlist = await getPlaylist("your-playlist-guid");
 ```
 
 The library will automatically load your API credentials and configuration from the `.env` file using `config.ts`.  
@@ -64,32 +84,6 @@ No need to pass credentials directly to each function.
 
 Set your Podcast Index API credentials as environment variables or pass them directly to the client.
 
-## API Reference
-
-### Podcast Index (pci.ts)
-
-- `getFeedFromPCIbyGuid(guid: string): Promise<FeedData>`  
-  Fetch podcast feed metadata by Podcast GUID.
-
-- `getEpisodesFromPCIbyGuid(feedGuid: string): Promise<EpisodeData>`  
-  Retrieve all episodes for a given podcast feed GUID.
-
-- `getEpisodeFromPCIbyGuids(feedGuid: string, itemGuid: string): Promise<EpisodeData | undefined>`  
-  Retrieve a specific episode by feed GUID and item GUID.
-
-- `searchPciAlbums(query: string): Promise<any>`  
-  Search for music albums by keyword.
-
-- `getRssUrlFromGuid(feedGuid: string): Promise<string | undefined>`  
-  Get the RSS URL for a podcast feed by GUID.
-
-### Music (music.ts)
-
-- `getAlbum(guid: string): Promise<Album>`  
-  Fetch an album (music podcast) and its songs by GUID.
-
-- `getPlaylist(guid: string): Promise<Playlist>`  
-  Fetch a playlist (music medium podcast) and its songs by GUID.
 
 ## Types
 
