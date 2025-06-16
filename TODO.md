@@ -1,0 +1,9 @@
+- Right now pci.ts is a hot mess and needs refactoring
+- music.ts is working quite nicely
+- music.ts needs more robust error detection and handling
+- music.ts needs unit tests made
+- pci.s needs search filtering by medium
+- Considering implementing a caching system
+    - Could be a simple sqilte file
+    - Better would be for the user to implement their own db
+        - I'm not sure how to do this

@@ -1,0 +1,50 @@
+{
+  "name": "km-pci-lib",
+  "version": "0.0.1",
+  "description": "A node js library for accessing the podcastindex.org's api in a node project with a focus on music",
+  "keywords": [
+    "podcast",
+    "podcasting",
+    "api",
+    "podcastindex",
+    "rss"
+  ],
+  "license": "ISC",
+  "author": "Kolomona Myer - AKA Sir Libre",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/km-pci-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/km-pci-lib/issues"
+  },
+  "homepage": "https://github.com/yourusername/km-pci-lib#readme",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "test:all": "vitest",
+    "test:file": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest --watch",
+    "test:unit": "vitest run src/tests/unit/*.spec.ts",
+    "test:integration": "vitest run src/tests/integration/*.spec.ts"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "fast-xml-parser": "^5.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "@vitest/ui": "^3.2.3",
+    "dotenv": "^16.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
+  }
+}
