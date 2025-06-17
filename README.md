@@ -1,5 +1,7 @@
 # km-pci-lib
 
+**Warning** This README was mostly generated with Copilot AI - It's not completely accurate. Eventually I'll go through it and make it correct. 🙂
+
 `km-pci-lib` is a library for interacting with the [Podcast Index](https://podcastindex.org/) API. It provides a set of utilities for querying podcast and episode data, handling authentication, and parsing responses from the Podcast Index service.
 
 It's main function is to serve me and my projects but you may or may not find it useful.
